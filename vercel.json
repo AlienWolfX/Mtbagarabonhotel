@@ -9,9 +9,22 @@
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
+        },
+        {
+            "src": "/build/(.*)",
+            "dest": "/public/build/"
+        },
+        {
+            "src": "/resources/(.*)",
+            "dest": "/public/resources/"
+        },
+        {
+            "src": "/build/(.*)",
+            "dest": "/public/build/"
         }
     ],
     "env": {
+        "APP_NAME": "Hotel Management System",
         "APP_ENV": "production",
         "APP_DEBUG": "true",
         "APP_URL": "https://mtbagarabonhotel.vercel.app/",
