@@ -13,8 +13,8 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
-        "APP_URL": "https://your.url.from.vercel.app",
-        "APP_KEY": add API key here from your .env file",
+        "APP_URL": "https://mtbagarabonhotel.vercel.app/",
+        "APP_KEY": "base64:4LD8ipvMbjiBCTw9AwgAO46lfBRXGKbxfgxSTeQW+2U=",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
