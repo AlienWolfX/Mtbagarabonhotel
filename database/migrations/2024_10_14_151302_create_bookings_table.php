@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('start_date')->nullable();
             $table->string('end_date')->nullable();
             $table->string('status')->default('pending');
+            $table->string('payment_status');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('bookings');
-       
+
     }
 };

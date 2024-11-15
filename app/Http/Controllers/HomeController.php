@@ -5,16 +5,11 @@ namespace App\Http\Controllers;
 use id;
 
 use App\Models\Room;
-
 use App\Models\Booking;
-
 use App\Models\Contact;
-
 use App\Models\Gallery;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
-
 use Stripe;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -160,29 +155,26 @@ class HomeController extends Controller
 
     public function add_booking(Request $request, $id)
     {
-
         $request->validate([
             'startDate' => 'required|date',
-
-            'endDate' => 'date|after:startDate',
+            'endDate' => 'required|date|after:startDate',
+            'payment_status' => 'required|string',
+            'status' => 'string',
         ]);
-
 
         $data = new Booking;
 
         $data->room_id = $id;
-
         $data->name = $request->name;
-
         $data->email = $request->email;
-
         $data->phone = $request->phone;
+        $data->start_date = $request->startDate;
+        $data->end_date = $request->endDate;
+        $data->status = $request->status;
+        $data->payment_status = $request->payment_status;
 
         $startDate = $request->startDate;
-
         $endDate = $request->endDate;
-
-
 
         $isBooked = Booking::where('room_id', $id)
             ->where('start_date', '<=', $endDate)
@@ -192,11 +184,6 @@ class HomeController extends Controller
             toastr()->timeOut(10000)->closeButton()->error('Room is already booked please try different date');
             return redirect()->back();
         } else {
-            $data->start_date = $request->startDate;
-
-            $data->end_date = $request->endDate;
-
-
             $data->save();
 
             toastr()->closeButton()->success('Room Booked Successfully.');
@@ -266,7 +253,7 @@ class HomeController extends Controller
         return view('home.services');
     }
 
-    
+
     public function my_bookings()
     {
         $user = Auth::user();
@@ -282,32 +269,4 @@ class HomeController extends Controller
 
         return view('home.my_booking', compact('bookings'));
     }
-
-
-    public function stripe(): View
-    {
-        return view('home.stripe');
-    }
-      
-    /**
-     * success response method.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function stripePost(Request $request): RedirectResponse
-    {
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-      
-        Stripe\Charge::create ([
-                "amount" => 10 * 100,
-                "currency" => "usd",
-                "source" => $request->stripeToken,
-                "description" => "Test payment from itsolutionstuff.com." 
-        ]);
-                
-        return back()
-                ->with('success', 'Payment successful!');
-    }
-
-
 }

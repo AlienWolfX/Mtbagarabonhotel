@@ -112,14 +112,20 @@
                                 <input type="date" name="endDate" id="endDate">
                             </div>
 
-                            
-                         
-                            <div style="padding-top: 20px;"> 
-                                <a class="btn btn-success" href="{{url('stripe')}}">Pay using Card</a>
-                             </div>
+
+                            <div style="padding-top: 20px;">
+                                <select id="payment-method" class="form-control" onchange="togglePaymentButton()">
+                                    <option value="">Select Payment Method</option>
+                                    <option value="pay-at-hotel">Pay at Hotel</option>
+                                    <option value="pay-online">Pay Online</option>
+                                </select>
+                            </div>
+
+                            <input type="hidden" name="payment_status" id="payment-status">
+                            <input type="hidden" name="status" id="status">
 
 
-                            <div style="padding-top: 20px;"> 
+                            <div style="padding-top: 20px;">
 
                                 <input type="submit" class="btn btn-primary" value="Book Room">
                             </div>
@@ -127,7 +133,7 @@
 
                         </form>
 
-                        
+
 
 
 
@@ -156,7 +162,7 @@
         <script type="text/javascript">
             $(function(){
                     var dtToday = new Date();
- 
+
                     var month = dtToday.getMonth() + 1;
 
                     var day = dtToday.getDate();
@@ -174,6 +180,30 @@
                     $('#endDate').attr('min', maxDate);
 
             });
+
+            function togglePaymentButton() {
+                var paymentMethod = document.getElementById('payment-method').value;
+                var paymentStatusInput = document.getElementById('payment-status');
+                var statusInput = document.getElementById('status');
+
+                if (paymentMethod === 'pay-at-hotel') {
+                    paymentStatusInput.value = "pay-at-hotel";
+                    statusInput.value = "unpaid";
+                } else if (paymentMethod === 'pay-online') {
+                    paymentStatusInput.value = "pay-online";
+                    statusInput.value = "paid";
+                    openPaymentTab();
+                }
+            }
+
+            function openPaymentTab() {
+                var url = "{{ url('pay', ['id' => $room->id]) }}";
+                var width = 600;
+                var height = 400;
+                var left = (screen.width - width) / 2;
+                var top = (screen.height - height) / 2;
+                window.open(url, '_blank', 'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left);
+            }
         </script>
 
 </body>
