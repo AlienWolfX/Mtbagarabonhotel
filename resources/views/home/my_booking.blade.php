@@ -61,7 +61,7 @@
             font-size: 24px;
         }
     </style>
-    
+
 </head>
 <body>
     <div class="container-xxl bg-white p-0">
@@ -93,7 +93,7 @@
                     <th class="th_deg">Status</th>
                     <th class="th_deg">Room Image</th>
                 </tr>
-    
+
                 @foreach($bookings as $booking)
                 <tr>
                     <td>{{ $booking->email }}</td>
@@ -106,7 +106,7 @@
                             <span class="status-approved">Approved</span>
                         @elseif($booking->status == 'rejected')
                             <span class="status-rejected">Rejected</span>
-                        @else
+                        @elseif($booking->status == 'pending')
                             <span class="status-pending">Pending</span>
                         @endif
                     </td>
@@ -117,13 +117,13 @@
                 @endforeach
             </table>
         </div>
-                
 
 
 
 
-        
-                    
+
+
+
         <!-- Booking Status Container End -->
 
         <!-- Footer Start -->

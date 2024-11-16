@@ -257,10 +257,7 @@ class HomeController extends Controller
     public function my_bookings()
     {
         $user = Auth::user();
-
-        // Ensure user is logged in
         if ($user) {
-            // Retrieve bookings only for the logged-in user
             $bookings = Booking::where('email', $user->email)->orderBy('created_at', 'desc')->get();
         } else {
             // Handle the case if there's no logged-in user, e.g., redirect to login or show an error

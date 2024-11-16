@@ -9,8 +9,8 @@
                     <div class="p-3" style="max-width: 700px;">
                         <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Mt.Bagarabon</h6>
                         <h1 class="display-3 text-white mb-4 animated slideInDown">Unwind in Paradise!</h1>
-                        <a href="{{url('our_rooms')}}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInDown">Our Rooms</a>
-                       
+                        <a href="{{ url ('our_rooms')}}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInDown">Our Rooms</a>
+
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                         <h6 class="section-title text-white text-uppercase mb-3 ">Mt.Bagarabon</h6>
                         <h1 class="display-3 text-white mb-4 ">Unwind in Paradise!</h1>
                         <a href="{{url('our_rooms')}}" class="btn btn-primary py-md-3 px-md-5 me-3 ">Our Rooms</a>
-                       
+
                     </div>
                 </div>
             </div>

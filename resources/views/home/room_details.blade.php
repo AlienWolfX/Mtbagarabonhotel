@@ -191,7 +191,7 @@
                     statusInput.value = "unpaid";
                 } else if (paymentMethod === 'pay-online') {
                     paymentStatusInput.value = "pay-online";
-                    statusInput.value = "paid";
+                    statusInput.value = "approved";
                     openPaymentTab();
                 }
             }

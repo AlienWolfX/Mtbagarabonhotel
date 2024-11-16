@@ -25,7 +25,7 @@
         @include('home.gallery')
         <!-- Gallery End -->
 
-    
+
 
     <!-- Footer Start -->
     @include('home.footer')
